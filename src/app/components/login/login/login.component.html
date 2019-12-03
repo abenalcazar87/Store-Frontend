@@ -1,0 +1,54 @@
+<div layout="column" layout-fill>
+        <mat-toolbar color="primary" class="mat-whiteframe-z1">
+          <mat-toolbar-row>                
+            <div></div>HULK STORE TODO 1
+          </mat-toolbar-row>
+        </mat-toolbar>
+
+    <div class="mat-content" layout-padding flex>
+        <div layout-gt-xs="row" layout-align-gt-xs="center start" class="margin">
+            <div flex-gt-xs="50">
+                <mat-card>
+                    <mat-card-title>
+                        <img src="assets/icons/hulk1.png" width="100">
+                    </mat-card-title>
+                    <mat-card-subtitle>Login</mat-card-subtitle>
+                    <mat-divider></mat-divider>
+                    <!---->
+                    <mat-card-content>
+                        <form #loginForm="ngForm">
+                            <div layout="row">
+                              <mat-form-field flex>
+                                <input matInput #userElement #userControl="ngModel" placeholder="Email" type="email" maxlength="30" name="email" [(ngModel)]="email" required>
+                                  <span matPrefix><mat-icon>person</mat-icon></span>
+                                  <mat-hint align="start">
+                                  <span [hidden]="!userControl.errors?.required || userControl.pristine" class="tc-red-600">Required</span>
+                                  </mat-hint>
+                                  <mat-hint align="end">{{userElement.value.length}} / 30</mat-hint>
+                              </mat-form-field>
+                            </div>
+                            <div layout="row">
+                                <mat-form-field flex>
+                                    <input matInput #passElement #passControl="ngModel" placeholder="Password" type="password" name="password" [(ngModel)]="password" required>
+                                    <span matPrefix><mat-icon>lock</mat-icon></span>
+                                    <mat-hint align="start">
+                                        <span [hidden]="!passControl.errors?.required || passControl.pristine" class="tc-red-600">Required</span>
+                                    </mat-hint>
+                                    <mat-hint align="end"></mat-hint>
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </mat-card-content>
+                    <mat-divider></mat-divider>
+                    <mat-card-actions layout="row">
+                    <button flex mat-raised-button color="primary" [disabled]="!loginForm.form.valid" (click)="login()">Login</button>
+                    </mat-card-actions>
+                </mat-card>
+                <!--<div class="register" fxLayout="column" fxLayoutAlign="center center">
+                        <span class="text">No tienes una cuenta?</span>
+                        <a class="link" routerLink="/register">Crear nueva cuenta</a>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>

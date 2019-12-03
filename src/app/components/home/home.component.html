@@ -1,0 +1,40 @@
+<div class="mat-content" layout-padding flex>
+    <div layout-gt-xs="row" layout-align-gt-xs="center start" class="margin">
+        <div flex-gt-xs="50">
+          <br><br><br><br>
+        </div>
+    </div>   
+</div>
+<div fxLayout="row wrap" fxLayoutAlign="center center">  
+  <div *ngIf="usuarioActual && usuarioActual.rol && usuarioActual.rol.nombre != 'Ventas'">
+    <button mat-button *ngFor="let menu of usuarioActual.rol.menus" (click)="clickModule(menu)">
+     <!--<mat-icon svgIcon="{{menu.icono}}"></mat-icon>-->
+     <img src="{{menu.icono}}" width="100">
+     <span>{{menu.descripcion}}</span> 
+    </button>
+    <div></div>      
+  </div>
+  <!--<div *ngIf="moduloActual" fxLayout="column" fxLayoutAlign="space-around center">
+   
+    <img src="assets/images/hinoak.png" width="100" style="width: 450px;">
+  </div>-->
+  <div *ngIf="moduloActual && usuarioActual.rol.nombre != 'Ventas'" fxLayout="column" fxLayoutAlign="space-around center">
+      <h2>HULK</h2>
+      <img src="assets/images/hulkmano.jpg" width="50" style="width: 300px;">
+      <h2>STORE</h2>
+  </div>
+  <div *ngIf="usuarioActual.rol.nombre == 'Ventas'" fxLayout="column" fxLayoutAlign="space-around center">
+        <div *ngIf="usuarioActual && usuarioActual.rol && usuarioActual.rol.nombre == 'Ventas'">
+                <button mat-button *ngFor="let menu of usuarioActual.rol.menus" (click)="clickModule(menu)">
+                 <!--<mat-icon svgIcon="{{menu.icono}}"></mat-icon>
+                 <img src="{{menu.icono}}" width="100">-->
+                 <mat-icon>shopping_cart</mat-icon>
+                 <!--<span>{{menu.descripcion}}</span>-->
+                </button>     
+              </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center center">
+          <app-item-carrito *ngFor="let producto of productos" [producto]="producto" style="margin: 15px;" [isVisibleFooter]="true" [isVisibleCarrito]="true"></app-item-carrito>
+      </div>
+  </div>
+
+</div>

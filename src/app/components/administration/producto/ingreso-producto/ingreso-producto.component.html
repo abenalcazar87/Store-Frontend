@@ -1,0 +1,26 @@
+<form name="insertProductoForm" [formGroup]="insertProductoForm" novalidate>
+    <h1 mat-dialog-title>Nuevo Producto</h1>
+
+    <div mat-dialog-content>
+        <div id="login" fxLayout="column">
+
+
+            <mat-form-field>
+                <input matInput type="number" id="cantidad" name="cantidad" placeholder="Cantidad"
+                    formControlName="cantidad" maxlength="50">
+                <mat-error *ngIf="insertProductoForm.get('cantidad').hasError('required')">
+                    Cantidad es requerido
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-button color="accent" class="submit-button" aria-label="LOG IN"
+            [disabled]="insertProductoForm.invalid" (click)="insertarProducto()">
+            INSERTAR
+        </button>
+        <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+    </div>
+</form>

@@ -1,0 +1,14 @@
+.example-card {
+  max-width: 250px;
+  width: 250px;
+  .img-producto {
+    height: 180px;
+    max-height: 180px;
+    background-size: cover;
+    padding-bottom: 15px;
+  }
+
+  .p-8 {
+    padding: 15px;
+  }
+}

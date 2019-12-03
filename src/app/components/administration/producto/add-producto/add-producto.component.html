@@ -1,0 +1,57 @@
+<form name="productoForm" [formGroup]="productoForm" novalidate>
+    <h1 mat-dialog-title>Nuevo Producto</h1>
+  
+    <div mat-dialog-content>
+      <div id="login" fxLayout="column">
+  
+        <mat-form-field>
+          <input matInput type="text" id="nombre" name="nombre" placeholder="Nombre" formControlName="nombre"
+            maxlength="50">
+          <mat-error *ngIf="productoForm.get('nombre').hasError('required')">
+            Nombre es requerido
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput type="text" id="descripcion" name="descripcion" placeholder="Descripcion"
+            formControlName="descripcion" maxlength="50">
+          <mat-error *ngIf="productoForm.get('descripcion').hasError('required')">
+            Descripcion es requerido
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+            <input matInput type="text" id="url" name="url" placeholder="URL"
+              formControlName="url" maxlength="500">
+            <mat-error *ngIf="productoForm.get('url').hasError('required')">
+              URL es requerido
+            </mat-error>
+          </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput type="number" id="precio" name="precio" placeholder="Precio" formControlName="precio"
+            maxlength="50">
+          <mat-error *ngIf="productoForm.get('precio').hasError('required')">
+            Precio es requerido
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput type="number" id="cantidad" name="cantidad" placeholder="Cantidad" formControlName="cantidad"
+            maxlength="50">
+          <mat-error *ngIf="productoForm.get('cantidad').hasError('required')">
+            Cantidad es requerido
+          </mat-error>
+        </mat-form-field>
+  
+      </div>
+    </div>
+  
+    <div mat-dialog-actions>
+      <button mat-button color="accent" class="submit-button" aria-label="LOG IN" [disabled]="productoForm.invalid"
+        (click)="guardarProducto()">
+        REGISTRO
+      </button>
+      <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+    </div>
+  </form>

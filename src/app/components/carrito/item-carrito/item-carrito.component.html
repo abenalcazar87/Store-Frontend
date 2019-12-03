@@ -1,0 +1,29 @@
+<mat-card class="example-card">
+
+    <img mat-card-image [src]="producto.url" class="img-producto">
+    <mat-card-content>
+        <h3>{{producto.nombre}}</h3>
+        <p>{{producto.descripcion}}</p>
+
+        <mat-divider></mat-divider>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="p-8">
+            <div>Precio:</div>
+            <div>{{producto.precio | currency}}</div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="p-8">
+            <div>Cantidad:</div>
+            <div>{{producto.cantidad}}</div>
+        </div>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="p-8" *ngIf="isVisibleFooter && isVisibleCarrito" >
+            <button mat-button color="primary" (click)="agregarcarritoCompras(producto)" >
+                <mat-icon>shopping_cart</mat-icon>
+            </button>
+        </div>
+    </mat-card-actions>
+</mat-card>

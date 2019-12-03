@@ -1,0 +1,58 @@
+<h1 mat-dialog-title *ngIf="!articulo.id">Nuevo Articulo</h1>
+<h1 mat-dialog-title *ngIf="articulo.id">Editar Articulo</h1>
+
+<form [formGroup]="articuloForm">
+  <div mat-dialog-content>
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Nombre del Articulo" formControlName="nombre" required>
+        <mat-error *ngIf="articuloForm.get('nombre').hasError('required')">Nombre es requerido</mat-error>
+        <mat-error *ngIf="articuloForm.get('nombre').hasError('minlength')">Nombre requiere minimo 5 caracteres</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Descripcion del Articulo" formControlName="descripcion">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="URL del Articulo" formControlName="url" required>
+        <mat-error *ngIf="articuloForm.get('url').hasError('required')">URL de la imagen es requerido</mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="45">
+          <input matInput type="number" placeholder="Precio del Articulo" formControlName="precio" required>
+          <mat-error *ngIf="articuloForm.get('precio').hasError('required')">Precio del Articulo es requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="45">
+          <input matInput type="number" placeholder="Cantidad del Articulo" formControlName="cantidad" required>
+          <mat-error *ngIf="articuloForm.get('cantidad').hasError('required')">Cantidad del Articulo es requerido</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="45">
+          <mat-select placeholder="Seleccione una Categoria" formControlName="categoria">
+            <mat-option *ngFor="let cat of categorias" [value]="cat.id">
+              {{cat.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="45">
+          <input matInput type="number" placeholder="Descuento del Articulo" formControlName="descuento">
+        </mat-form-field>
+      </div>
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button color="accent" [disabled]="articuloForm.invalid" (click)=guardar()>
+      <span *ngIf="!articulo.id">Crear</span>
+      <span *ngIf="articulo.id">Editar</span>
+    </button>
+    <button mat-button color="primary" mat-dialog-close>Cancelar</button>
+  </div>
+</form>

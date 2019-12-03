@@ -1,0 +1,83 @@
+<br>
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card class="card">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <h3>Gestión de Usuarios</h3>
+      </mat-card-title>
+
+      <button mat-fab color="success" style="float: right; margin-right: 20px;" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <!--<button mat-fab color="primary" style="float: right; margin-right: 20px;" (click)="imprimirItem()">
+        <mat-icon>print</mat-icon>
+      </button>-->
+      <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+          <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Ingresar Filtro">
+        </mat-form-field>
+      </div>
+      <mat-card-content>
+        <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="dataSource">
+            <!-- nombres Column -->
+            <ng-container matColumnDef="nombres">
+              <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.nombres}} </mat-cell>
+            </ng-container>
+
+            <!-- apellidos Column -->
+            <ng-container matColumnDef="apellidos">
+              <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.apellidos}} </mat-cell>
+            </ng-container>
+
+            <!-- cedula Column -->
+            <ng-container matColumnDef="cedula">
+              <mat-header-cell *matHeaderCellDef> Cédula </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
+            </ng-container>
+
+            <!-- direccion Column -->
+            <ng-container matColumnDef="direccion">
+              <mat-header-cell *matHeaderCellDef> Dirección </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.direccion}} </mat-cell>
+            </ng-container>
+
+            <!-- telefono Column -->
+            <ng-container matColumnDef="telefono">
+              <mat-header-cell *matHeaderCellDef> Teléfono </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.telefono}} </mat-cell>
+            </ng-container>
+
+             <ng-container matColumnDef="rol">
+              <mat-header-cell *matHeaderCellDef> Perfil </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.rol.nombre}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+              <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                  <button mat-icon-button color="success" (click)="editar(element)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="success" (click)="eliminar(element)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+          <br/>
+          <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]">
+          </mat-paginator>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

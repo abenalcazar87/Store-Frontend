@@ -1,0 +1,73 @@
+<br>
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card class="card">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <h3>Gestión de Productos</h3>
+      </mat-card-title>
+          <button mat-fab color="success" (click)="nuevoProducto()" style="float: right; margin-right: 20px">
+            <mat-icon>add</mat-icon>
+          </button>
+
+          <div fxLayout fxLayoutAlign="center center">
+              <mat-form-field fxFlex="40%">
+                <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Ingresar Filtro">
+              </mat-form-field>
+            </div>
+            <mat-card-content>
+              <div class="example-container mat-elevation-z8">
+  
+        <mat-table [dataSource]="dataSource" matSort>
+  
+          <!--<ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+          </ng-container>-->
+  
+          <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="precio">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.precio | currency}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="cantidad">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.cantidad}}</mat-cell>
+          </ng-container>
+  
+  
+          <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button mat-button color="success" (click)="editarProducto(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="ingresar">
+            <mat-header-cell *matHeaderCellDef>Ingresar Item</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button mat-button color="success" (click)="insertProducto(row)">
+                <mat-icon>add_to_queue</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+  
+  
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;">
+  
+          </mat-row>
+        </mat-table>
+  
+        <br/>
+        <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]">
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card> 
+  </div>
